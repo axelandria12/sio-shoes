@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/sub/category')]
+#[Route('/admin/sub/category')]
 final class SubCategoryController extends AbstractController
 {
     #[Route(name: 'app_sub_category_index', methods: ['GET'])]
@@ -33,6 +33,7 @@ final class SubCategoryController extends AbstractController
             $entityManager->persist($subCategory);
             $entityManager->flush();
 
+            $this->addFlash('success','La catégorie a été ajoutée');
             return $this->redirectToRoute('app_sub_category_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -59,6 +60,7 @@ final class SubCategoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
+            $this->addFlash('info','La sous-catégorie a été modifié');
             return $this->redirectToRoute('app_sub_category_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -75,7 +77,7 @@ final class SubCategoryController extends AbstractController
             $entityManager->remove($subCategory);
             $entityManager->flush();
         }
-
+        $this->addFlash('danger','La sous-catégorie a été supprimée');
         return $this->redirectToRoute('app_sub_category_index', [], Response::HTTP_SEE_OTHER);
     }
 }

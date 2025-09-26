@@ -2,22 +2,25 @@
 
 namespace App\Form;
 
-use App\Entity\Category;
-use App\Entity\SubCategory;
+use App\Entity\Product;
+use App\Entity\subCategory;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class SubCategoryType extends AbstractType
+class ProductType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('name')
-            ->add('category', EntityType::class, [
-                'class' => Category::class,
-                'choice_label' => 'name',
+            ->add('description')
+            ->add('price')
+            ->add('subCategories', EntityType::class, [
+                'class' => subCategory::class,
+                'choice_label' => 'id',
+                'multiple' => true,
             ])
         ;
     }
@@ -25,7 +28,7 @@ class SubCategoryType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => SubCategory::class,
+            'data_class' => Product::class,
         ]);
     }
 }

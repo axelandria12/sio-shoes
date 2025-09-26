@@ -1,0 +1,6 @@
+{{ form_start(form) }}
+
+    <label for="">Nom du produit : </label>
+    {{ form_widget(form.name,{'attr':{'class':'form form-control','placeholder':"nom"}}) }}
+    {{ form_errors(form.name) }}
+{{ form_end(form) }}
