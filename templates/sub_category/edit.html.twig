@@ -8,8 +8,8 @@
 
     {{ include('sub_category/_form.html.twig', {'button_label': 'Modifier'}) }}
     <br>
-    {{ include('sub_category/_delete_form.html.twig') }}
-    <br>
     <a class="btn btn-dark" href="{{ path('app_sub_category_index') }}">Retour</a>
+    <br>
+    {{ include('sub_category/_delete_form.html.twig') }}
 </div>
 {% endblock %}

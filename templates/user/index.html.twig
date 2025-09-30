@@ -32,22 +32,21 @@
                         <span class="text-secondary">client</span>
                     {% endif %}
                 </td>
+                 <td>
+                    {% if ("ROLE_ADMIN" in user.roles) == false %}
+                        {% if ("ROLE_EDITOR" in user.roles) == false %}
+                            <a onclick="return confirm('Voulez-vous vraiment affecter le rôle éditeur à l\'utilisateur ?')" class="btn btn-outline-primary" href="{{path('app_user_add_editor_role',{'id':user.id}) }}">Ajouter le rôle Editeur</a>
+                        {% else %}
+                            <a onclick="return confirm('Voulez-vous vraiment retirer le rôle éditeur à l\'utilisateur ?')" class="btn btn btn-danger" href="{{path('app_user_remove_editor_role',{'id':user.id}) }}">Retirer le rôle Editeur</a>
+                        {% endif %}
+                    {% endif %}
+                    <a onclick="return confirm('Voulez-vous vraiment supprimer cet utilisateur ?')"
+                    class="btn btn-danger" href="{{ path('app_user_delete',{'id':user.id}) }}">Supprimer</a>
+                </td>
             </tr>
         {% else %}
             <p>Aucun utilisateur à afficher</p>
         {% endfor %}
         </table>
-        <td>
-        {% if ("ROLE_ADMIN" in user.roles) == false %}
-            {% if ("ROLE_EDITOR" in user.roles) == false %}
-                <a onclick="return confirm('Voulez-vous vraiment affecter le rôle éditeur à l\'utilisateur ?')" class="btn btn-outline-primary" href="{{path('app_user_add_editor_role',{'id':user.id}) }}">Ajouter le rôle Editeur</a>
-            {% else %}
-                <a onclick="return confirm('Voulez-vous vraiment retirer le rôle éditeur à l\'utilisateur ?')" class="btn btn btn-danger" href="{{path('app_user_remove_editor_role',{'id':user.id}) }}">Retirer le rôle Editeur</a>
-            {% endif %}
-        {% endif %}
-        <a onclick="return confirm('Voulez-vous vraiment supprimer cet utilisateur ?')"
-        class="btn btn-danger" href="{{ path('app_user_delete',{'id':user.id}) }}">Supprimer</a>
-        </td>
-        </tr>
     </div>
 {% endblock %}
