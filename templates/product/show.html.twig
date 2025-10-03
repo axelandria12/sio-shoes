@@ -25,7 +25,8 @@
             </tr>
         </tbody>
     </table>
-
+    <a href="{{ path('app_product_stock_add_history',{'id' : product.id}) }}">Afficher l'historique des ajouts au stock</a>
+    <br><br>
     <a class="btn btn-outline-primary" href="{{ path('app_product_edit', {'id': product.id}) }}">Modifiez</a>
     <br><br>
     {{ include('product/_delete_form.html.twig') }}
